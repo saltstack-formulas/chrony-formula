@@ -40,13 +40,13 @@ Contributing to this repo
 Please see :ref:`How to contribute <CONTRIBUTING>` for more details.
 
 Available states
-================
+----------------
 
 .. contents::
     :local:
 
 ``chrony``
-^^^^^^^^^^^^
+^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -55,24 +55,24 @@ manages the chrony configuration file and then
 starts the associated chrony service.
 
 ``chrony.package``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 This state will install the chrony package only.
 
 ``chrony.config``
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 This state will configure the chrony service and has a dependency on ``chrony.install``
 via include list.
 
 ``chrony.service``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 This state will start the chrony service and has a dependency on ``chrony.config``
 via include list.
 
 ``chrony.clean``
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -82,18 +82,18 @@ removes the configuration file and
 then uninstalls the package.
 
 ``chrony.service.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will stop the chrony service and disable it at boot time.
 
 ``chrony.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the configuration of the chrony service and has a
 dependency on ``chrony.service.clean`` via include list.
 
 ``chrony.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the chrony package and has a depency on
 ``chrony.config.clean`` via include list.
