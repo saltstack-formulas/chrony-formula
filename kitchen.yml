@@ -72,8 +72,7 @@ provisioner:
   state_top:
     base:
       '*':
-        # - chrony
-        - chrony.config
+        - chrony
   pillars:
     top.sls:
       base:

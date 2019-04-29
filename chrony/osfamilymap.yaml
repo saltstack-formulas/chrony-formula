@@ -22,7 +22,7 @@ Debian:
   options: offline minpoll 8
   keyfile: /etc/chrony/chrony.keys
   driftfile: /var/lib/chrony/chrony.drift
-  otherparams: 
+  otherparams:
     - 'log tracking measurements statistics'
     - 'maxupdateskew 100.0'
     - 'dumponexit'
