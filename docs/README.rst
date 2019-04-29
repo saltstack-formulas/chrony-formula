@@ -46,14 +46,54 @@ Available states
     :local:
 
 ``chrony``
-----------
+^^^^^^^^^^^^
 
-Installs the chrony package.
+*Meta-state (This is a state that includes other states)*.
+
+This installs the chrony package,
+manages the chrony configuration file and then
+starts the associated chrony service.
+
+``chrony.package``
+^^^^^^^^^^^^^^^^^^^^
+
+This state will install the chrony package only.
 
 ``chrony.config``
------------------
-This state manages the file ``chrony.conf`` under ``/etc`` (template found in "chrony/files"). The configuration is populated by values in "chrony/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
+^^^^^^^^^^^^^^^^^^^
 
-``chrony.removed``
------------------
-Stops the service and uninstalls the package.
+This state will configure the chrony service and has a dependency on ``chrony.install``
+via include list.
+
+``chrony.service``
+^^^^^^^^^^^^^^^^^^^^
+
+This state will start the chrony service and has a dependency on ``chrony.config``
+via include list.
+
+``chrony.clean``
+^^^^^^^^^^^^^^^^^^
+
+*Meta-state (This is a state that includes other states)*.
+
+this state will undo everything performed in the ``chrony`` meta-state in reverse order, i.e.
+stops the service,
+removes the configuration file and
+then uninstalls the package.
+
+``chrony.service.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This state will stop the chrony service and disable it at boot time.
+
+``chrony.config.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This state will remove the configuration of the chrony service and has a
+dependency on ``chrony.service.clean`` via include list.
+
+``chrony.package.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This state will remove the chrony package and has a depency on
+``chrony.config.clean`` via include list.

@@ -20,5 +20,5 @@
     )
 ) %}
 
-{#- Merge the chrony pillar #}
-{%- set chrony = salt['pillar.get']('chrony', default=defaults, merge=True) %}
+{#- Merge the chrony config (e.g. from pillar) #}
+{%- set chrony = salt['config.get']('chrony', default=defaults, merge=True) %}
