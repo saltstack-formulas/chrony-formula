@@ -14,11 +14,11 @@
     merge=salt['grains.filter_by'](osfamilymap, grain='os_family',
       merge=salt['grains.filter_by'](osmap, grain='os',
         merge=salt['grains.filter_by'](osfingermap, grain='osfinger',
-          merge=salt['config.get']('chrony:lookup', default={})
+          merge=salt['pillar.get']('chrony:lookup', default={})
         )
       )
     )
 ) %}
 
-{#- Merge the chrony config (e.g. from pillar) #}
-{%- set chrony = salt['config.get']('chrony', default=defaults, merge=True) %}
+{#- Merge the chrony pillar #}
+{%- set chrony = salt['pillar.get']('chrony', default=defaults, merge=True) %}
