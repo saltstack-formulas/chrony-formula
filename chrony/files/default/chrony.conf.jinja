@@ -1,0 +1,24 @@
+########################################################################
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+########################################################################
+
+{% for server in chrony.ntpservers -%}
+server {{ server }} {{ chrony.options }}
+{% endfor %}
+
+keyfile {{ chrony.keyfile }}
+
+driftfile {{ chrony.driftfile }}
+
+{% if chrony.allow is defined %}
+{% for allowed in chrony.get('allow', []) -%}
+allow {{ allowed }}
+{% endfor %}
+{%- endif %}
+
+logdir {{ chrony.logdir }}
+
+{% for param in chrony.get('otherparams', []) -%}
+{{ param }}
+{% endfor %}

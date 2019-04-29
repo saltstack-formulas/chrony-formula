@@ -1,27 +1,29 @@
-# Default lookup dictionary
-
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 chrony:
   package: chrony
-  service: chronyd
+  service:
+    name: chronyd
   config: /etc/chrony.conf
-  config_src: salt://{{ slspath }}/files/chrony_config
-  ntpservers:  [ '0.us.pool.ntp.org',
-                 '1.us.pool.ntp.org',
-                 '2.us.pool.ntp.org',
-                 '3.us.pool.ntp.org'
-               ]
+  ntpservers:
+    - '0.us.pool.ntp.org'
+    - '1.us.pool.ntp.org'
+    - '2.us.pool.ntp.org'
+    - '3.us.pool.ntp.org'
   options: iburst
   logdir: /var/log/chrony
   keyfile: /etc/chrony.keys
   driftfile: /var/lib/chrony/drift
-  otherparams: [ 'rtcsync',
-                 'makestep 10 3',
-                 'stratumweight 0',
-                 'bindcmdaddress 127.0.0.1',
-                 'bindcmdaddress ::1',
-                 'commandkey 1',
-                 'generatecommandkey',
-                 'noclientlog',
-                 'logchange 0.5',
-                ]
-  allow:  [ '10/8', '192.168/16', '172.16/12' ]
+  otherparams:
+    - 'rtcsync'
+    - 'makestep 10 3'
+    - 'stratumweight 0'
+    - 'bindcmdaddress 127.0.0.1'
+    - 'bindcmdaddress ::1'
+    - 'noclientlog'
+    - 'logchange 0.5'
+  allow:
+    - '10/8'
+    - '192.168/16'
+    - '172.16/12'

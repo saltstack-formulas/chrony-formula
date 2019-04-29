@@ -1,65 +1,30 @@
-# OS parameters overriding common defaults(.yaml)
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os'] based logic.
+# You just need to add the key:values for an `os` that differ
+# from `defaults.yaml` + `os_family.yaml`.
+# Only add an `os` which is/will be supported by the formula
+#
+# If you do not need to provide defaults via the `os` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osmap: {}
+---
+# os_family: Debian
+Ubuntu: {}
 
-Debian:
-  service: chrony
-  config: /etc/chrony/chrony.conf
-  ntpservers: [ '0.debian.pool.ntp.org', 
-                '1.debian.pool.ntp.org',
-                '2.debian.pool.ntp.org',
-                '3.debian.pool.ntp.org', ]
-  options: offline minpoll 8
-  keyfile: /etc/chrony/chrony.keys
-  driftfile: /var/lib/chrony/chrony.drift
-  otherparams: [ 'log tracking measurements statistics',
-                 'maxupdateskew 100.0',
-                 'dumponexit',
-                 'dumpdir /var/lib/chrony',
-                 'commandkey 1',
-                 'local stratum 10',
-                 'rtconutc', ]
+Raspbian: {}
 
-RedHat:
-  ntpservers: [ '0.centos.pool.ntp.org',
-                '1.centos.pool.ntp.org',
-                '2.centos.pool.ntp.org',
-                '3.centos.pool.ntp.org', ]
-  otherparams: [ 'rtcsync',
-                 'makestep 10 3',
-                 'stratumweight 0',
-                 'bindcmdaddress 127.0.0.1',
-                 'bindcmdaddress ::1',
-                 'commandkey 1',
-                 'generatecommandkey',
-                 'noclientlog',
-                 'logchange 0.5', ]
+# os_family: RedHat
+Fedora: {}
 
-Arch:
-  ntpservers: [ '0.arch.pool.ntp.org',
-                 '1.arch.pool.ntp.org',
-                 '2.arch.pool.ntp.org' ]
-  otherparams: [ 'rtconutc',
-                 'rtcsync', ]
+CentOS: {}
 
-Gentoo:
-  package: net-misc/chrony
-  service: chronyd
-  config: /etc/chrony/chrony.conf
-  ntpservers: [ '0.gentoo.pool.ntp.org',
-                '1.gentoo.pool.ntp.org',
-                '2.gentoo.pool.ntp.org',
-                '3.gentoo.pool.ntp.org', ]
-  options: iburst
-  driftfile: /var/lib/chrony/drift
-  otherparams: [ 'rtconutc',
-                 'rtcsync', ]
+# os_family: Gentoo
+Gentoo: {}
 
-Suse:
-  ntpservers: [ '0.arch.opensuse.ntp.org',
-                '1.arch.opensuse.ntp.org',
-                '2.arch.opensuse.ntp.org',
-                '3.opensuse.pool.ntp.org', ]
-  otherparams: [ 'rtcsync',
-                 'makestep 10 3',
-                 'maxdistance 6',
-                 'logchange 0.1', ]
+# os_family: Suse
+Suse: {}
 
+# os_family: Arch
+Arch: {}
