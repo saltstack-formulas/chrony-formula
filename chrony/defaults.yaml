@@ -17,13 +17,8 @@ chrony:
   driftfile: /var/lib/chrony/drift
   otherparams:
     - 'rtcsync'
-    - 'makestep 10 3'
-    - 'stratumweight 0'
+    - 'makestep 0.1 3'
+    - 'stratumweight 0.001'
     - 'bindcmdaddress 127.0.0.1'
     - 'bindcmdaddress ::1'
-    - 'noclientlog'
-    - 'logchange 0.5'
-  allow:
-    - '10/8'
-    - '192.168/16'
-    - '172.16/12'
+    - 'logchange 1'
