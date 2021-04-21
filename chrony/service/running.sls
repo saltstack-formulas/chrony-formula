@@ -15,3 +15,5 @@ chrony-service-running-service-running:
     - enable: True
     - require:
       - sls: {{ sls_config_file }}
+    - watch:
+      - file: chrony-config-file-file-managed
