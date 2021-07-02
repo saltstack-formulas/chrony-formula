@@ -3,13 +3,15 @@
 ---
 chrony:
   ntpservers:
-    - '0.debian.pool.ntp.org'
-    - '1.centos.pool.ntp.org'
+    - name: '0.debian.pool.ntp.org'
+      options: iburst
+    - name: '1.centos.pool.ntp.org'
     - '2.arch.pool.ntp.org'
     - '3.gentoo.pool.ntp.org'
   pool:
-    - '0.debian.pool.ntp.org'
-    - '1.centos.pool.ntp.org'
+    - name: '0.debian.pool.ntp.org'
+      options: iburst
+    - name: '1.centos.pool.ntp.org'
     - '2.arch.pool.ntp.org'
     - '3.gentoo.pool.ntp.org'
   allow:

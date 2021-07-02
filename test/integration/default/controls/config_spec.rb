@@ -30,5 +30,9 @@ control 'Chrony configuration' do
     its('content') { should include keyfile }
     its('content') { should include driftfile }
     its('content') { should include logdir }
+    its('content') { should include 'server 0.debian.pool.ntp.org iburst' }
+    its('content') { should include 'server 1.centos.pool.ntp.org' }
+    its('content') { should include 'pool 0.debian.pool.ntp.org iburst' }
+    its('content') { should include 'pool 1.centos.pool.ntp.org' }
   end
 end

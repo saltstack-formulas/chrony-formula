@@ -5,13 +5,21 @@
 
 {%- if chrony.ntpservers is defined %}
 {% for server in chrony.ntpservers -%}
+{% if server is mapping %}
+server {{ server.name }} {{ server.options | default(chrony.options) }}
+{% else %}
 server {{ server }} {{ chrony.options }}
+{% endif %}
 {% endfor %}
 {%- endif %}
 
 {%- if chrony.pool is defined %}
 {% for pool in chrony.pool -%}
+{% if pool is mapping %}
+pool {{ pool.name }} {{ pool.options | default(chrony.options) }}
+{% else %}
 pool {{ pool }} {{ chrony.options }}
+{% endif %}
 {% endfor %}
 {% endif %}
 
