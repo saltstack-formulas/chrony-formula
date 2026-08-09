@@ -3,38 +3,40 @@
 # Your changes will be overwritten.
 ########################################################################
 
-{%- if chrony.ntpservers is defined %}
-{% for server in chrony.ntpservers -%}
-{% if server is mapping %}
+{%- if chrony.ntpservers is defined and chrony.ntpservers %}
+{%  for server in chrony.ntpservers %}
+{%- if server is mapping %}
 server {{ server.name }} {{ server.options | default(chrony.options) }}
-{% else %}
+{%- else %}
 server {{ server }} {{ chrony.options }}
-{% endif %}
-{% endfor %}
+{%- endif %}
+{%- endfor %}
 {%- endif %}
 
 {%- if chrony.pool is defined %}
-{% for pool in chrony.pool -%}
-{% if pool is mapping %}
+{%  for pool in chrony.pool %}
+{%- if pool is mapping %}
 pool {{ pool.name }} {{ pool.options | default(chrony.options) }}
-{% else %}
+{%- else %}
 pool {{ pool }} {{ chrony.options }}
-{% endif %}
-{% endfor %}
-{% endif %}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
 
 keyfile {{ chrony.keyfile }}
 
 driftfile {{ chrony.driftfile }}
 
-{% if chrony.allow is defined %}
-{% for allowed in chrony.get('allow', {}) -%}
+{%- if chrony.allow is defined %}
+{%  for allowed in chrony.get('allow', {}) %}
 allow {{ allowed }}
-{% endfor %}
+{%- endfor %}
 {%- endif %}
 
 logdir {{ chrony.logdir }}
 
-{% for param in chrony.get('otherparams', {}) -%}
+{%- if chrony.get('otherparams', {}) %}
+{%  for param in chrony.get('otherparams', {}) %}
 {{ param }}
-{% endfor %}
+{%- endfor %}
+{%- endif %}
