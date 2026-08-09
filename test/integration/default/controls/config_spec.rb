@@ -4,6 +4,7 @@
 keyfile = 'keyfile '
 driftfile = '/var/lib/chrony/'
 logdir = 'logdir /var/log/chrony'
+confd = nil
 case platform[:name]
 when 'debian', 'ubuntu'
   config_file = '/etc/chrony/chrony.conf'
@@ -13,6 +14,11 @@ when 'gentoo'
   config_file = '/etc/chrony/chrony.conf'
   keyfile += '/etc/chrony.keys'
   driftfile += 'drift'
+when 'suse'
+  config_file = '/etc/chrony.conf'
+  keyfile += '/etc/chrony.keys'
+  driftfile += 'drift'
+  confd = '/etc/chrony.d'
 else
   config_file = '/etc/chrony.conf'
   keyfile += '/etc/chrony.keys'
@@ -34,5 +40,10 @@ control 'Chrony configuration' do
     its('content') { should include 'server 1.centos.pool.ntp.org' }
     its('content') { should include 'pool 0.debian.pool.ntp.org iburst' }
     its('content') { should include 'pool 1.centos.pool.ntp.org' }
+  end
+  if !confd.nil?
+    describe directory(confd) do
+      its('size') { should be 0 }
+    end
   end
 end

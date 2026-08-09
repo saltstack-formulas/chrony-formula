@@ -60,6 +60,9 @@ openSUSE:
     - 'maxdistance 6'
     - 'logchange 0.1'
 
+Suse:
+  confd: /etc/chrony.d
+
 Gentoo:
   package: net-misc/chrony
   config: /etc/chrony/chrony.conf

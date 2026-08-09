@@ -6,6 +6,7 @@ chrony:
   service:
     name: chronyd
   config: /etc/chrony.conf
+  confd: false
   ntpservers:
     - '0.us.pool.ntp.org'
     - '1.us.pool.ntp.org'

@@ -10,6 +10,17 @@
 include:
   - {{ sls_package_install }}
 
+{%- if chrony.confd is string %}
+chrony-config-conf.d:
+  file.directory:
+    - name: {{ chrony.confd }}
+    - clean: True
+    - require:
+      - sls: {{ sls_package_install }}
+      - file: chrony-config-file-file-managed
+      - file: chrony-config-file-pool-file-managed
+{%- endif %}
+
 chrony-config-file-file-managed:
   file.managed:
     - name: {{ chrony.config }}
@@ -23,5 +34,13 @@ chrony-config-file-file-managed:
     - template: jinja
     - context:
         chrony: {{ chrony|json }}
+    - require:
+      - sls: {{ sls_package_install }}
+
+chrony-config-file-pool-file-managed:
+  file.managed:
+    - name: {{ chrony.confd }}/pool.conf
+    - create: False
+    - replace: False
     - require:
       - sls: {{ sls_package_install }}
