@@ -243,6 +243,18 @@ verifier:
 suites:
   - name: default
     provisioner:
+      # Ubuntu 26.04 prevents `chrony` running in a container, so
+      # override `systemd` config for testing purposes
+      # The `if` statement may need to be adjusted for future releases
+      init_environment: |
+        if . /etc/os-release && [ "$ID" = "ubuntu" ] \
+          && [ "${VERSION_ID%%.*}" = "26" ]; then
+            sudo mkdir -p /etc/systemd/system/chrony.service.d
+            sudo sh -c "cat > /etc/systemd/system/chrony.service.d/override.conf <<'EOF'
+            [Unit]
+            ConditionVirtualization=
+            EOF"
+        fi
       state_top:
         base:
           '*':
