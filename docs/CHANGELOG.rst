@@ -2,6 +2,23 @@
 Changelog
 =========
 
+`1.3.2 <https://github.com/saltstack-formulas/chrony-formula/compare/v1.3.1...v1.3.2>`_ (2026-09-23)
+--------------------------------------------------------------------------------------------------------
+
+Testing
+^^^^^^^
+
+
+* **kitchen:** override ``systemd`` config to allow ``chrony`` to run (\ `c51a467 <https://github.com/saltstack-formulas/chrony-formula/commit/c51a467c0d02bee842ec3523aa440c65ac7905df>`_\ )
+
+Maintenance
+^^^^^^^^^^^
+
+
+* **copier:** update template https://github.com/dafyddj/copier-ssf-ci to v2.11.13 (\ `754587d <https://github.com/saltstack-formulas/chrony-formula/commit/754587d9b324d9e67a9f879855a9f25c52c53551>`_\ )
+* **copier:** update template https://github.com/dafyddj/copier-ssf-ci to v2.11.4 (\ `6f44ed5 <https://github.com/saltstack-formulas/chrony-formula/commit/6f44ed511d5c850e65fdc72484c007c0f6d364e9>`_\ )
+* **copier:** update template https://github.com/dafyddj/copier-ssf-ci to v2.11.7 (\ `cd5e712 <https://github.com/saltstack-formulas/chrony-formula/commit/cd5e7127d9f7b506d5c962836ab1b1e98b1c0726>`_\ )
+
 `1.3.1 <https://github.com/saltstack-formulas/chrony-formula/compare/v1.3.0...v1.3.1>`_ (2026-05-18)
 --------------------------------------------------------------------------------------------------------
 
